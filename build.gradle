@@ -15,4 +15,9 @@ ext {
 
     hilt_version = "2.43"
 
+    coroutines_version = "1.6.1"
+
+    retrofit_interceptor_version = "4.9.3"
+
+    okhttp_version = "3.6.0"
 }
