@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "StoreEase"
 include ':app'
+include ':core'
+include ':core:data'
+include ':core:domain'
+include ':core:common'
