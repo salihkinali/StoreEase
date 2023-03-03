@@ -11,7 +11,11 @@ class ProductMapperImpl @Inject constructor(): StoreListMapper<StoreProductItem,
             ProductEntity(
                 description = it.description.orEmpty(),
                 image = it.image.orEmpty(),
-                title = it.title.orEmpty()
+                title = it.title.orEmpty(),
+                category = it.category.orEmpty(),
+                id = it.id ?: 0,
+                price = it.price ?: 0.00,
+                rating = it.rating?.rate ?: 0.00
             )
         } ?: emptyList()
     }
