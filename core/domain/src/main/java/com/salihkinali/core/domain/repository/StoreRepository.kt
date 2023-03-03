@@ -5,7 +5,5 @@ import com.salihkinali.core.domain.entity.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
 interface StoreRepository {
-
-    suspend fun getAllStoreProducts(): Flow<NetworkResponse<List<ProductEntity>>>
-
+    fun getAllStoreProducts(): Flow<NetworkResponse<List<ProductEntity>>>
 }
