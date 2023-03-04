@@ -2,6 +2,8 @@ package com.salihkinali.core.data.di
 
 import com.salihkinali.core.data.repository.StoreRepositoryImpl
 import com.salihkinali.core.domain.repository.StoreRepository
+import com.salihkinali.core.domain.usecase.GetProductUseCase
+import com.salihkinali.core.domain.usecase.GetProductUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,5 @@ abstract class RepositoryModule {
     @Binds
     @ViewModelScoped
     abstract fun bindRepository(storeRepositoryImpl: StoreRepositoryImpl): StoreRepository
+
 }

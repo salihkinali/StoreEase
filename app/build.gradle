@@ -26,7 +26,7 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
@@ -44,10 +44,13 @@ android {
 
 dependencies {
 
-     implementation project(path:':core:domain')
-     implementation project(path:':core:common')
-     implementation project(path:':feature:home')
-    implementation project(path:':navigation')
+    implementation project(path: ':core:domain')
+    implementation project(path: ':core:data')
+    implementation project(path: ':core:design')
+    implementation project(path: ':core:common')
+    implementation project(path: ':feature:home')
+    implementation project(path: ':navigation')
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
