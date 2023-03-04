@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.salihkinali.core.design'
+    namespace 'com.salihkinali.feature.home'
     compileSdk 33
 
     defaultConfig {
@@ -29,12 +29,18 @@ android {
     buildFeatures{
         viewBinding true
     }
+    
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
+
+    implementation project(path: ":navigation")
+    implementation project(path: ":core:domain")
+    implementation project(path: ":core:common")
+    implementation project(path: ":core:design")
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
