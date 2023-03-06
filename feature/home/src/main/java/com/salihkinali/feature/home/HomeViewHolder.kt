@@ -11,6 +11,7 @@ class HomeViewHolder(private val binding: ProductItemBinding) : BaseViewHolder<P
     override fun onBind(data: ProductUiData) {
         binding.apply {
             binding.productImage.downloadImage(data.image)
+            binding.productName.text = data.title
             binding.priceText.text = data.price.toString()
         }
     }
