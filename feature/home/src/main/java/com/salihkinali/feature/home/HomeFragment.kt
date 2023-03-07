@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.salihkinali.core.common.NetworkResponse
 import com.salihkinali.core.design.base.BaseFragment
 import com.salihkinali.core.design.extension.hide
@@ -16,7 +17,9 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel by viewModels<HomeViewModel>()
-    private val adapter by lazy { HomeAdapter() }
+
+
+    private val adapter by lazy { HomeAdapter(::navigateToFragment) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,5 +55,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun loadDataAdapter(result: List<ProductUiData>) {
         adapter.updateItems(result)
+    }
+    private fun navigateToFragment(id: Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
+        findNavController().navigate(action)
+
     }
 }

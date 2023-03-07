@@ -18,6 +18,10 @@
         android:id="@+id/detailFragment"
         android:name="com.salihkinali.feature.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
