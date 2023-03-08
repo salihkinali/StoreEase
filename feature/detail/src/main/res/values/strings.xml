@@ -1,3 +1,9 @@
 <resources>
     <string name="hello_blank_fragment">BURASI DETAY FRAGMENT</string>
+    <string name="add_to_basket">ADD TO BASKET</string>
+    <string name="example_ipsum">Lorrem Ipsum color inside for incxoar flesure impressive</string>
+    <string name="stock_count">Stock Count:</string>
+    <string name="minus">-</string>
+    <string name="example_number">199,00</string>
+    <string name="plus">+</string>
 </resources>
