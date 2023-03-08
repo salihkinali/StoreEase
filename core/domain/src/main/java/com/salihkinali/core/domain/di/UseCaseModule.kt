@@ -1,5 +1,7 @@
 package com.salihkinali.core.domain.di
 
+import com.salihkinali.core.domain.usecase.GetDetailProductUseCase
+import com.salihkinali.core.domain.usecase.GetDetailProductUseCaseImpl
 import com.salihkinali.core.domain.usecase.GetProductUseCase
 import com.salihkinali.core.domain.usecase.GetProductUseCaseImpl
 import dagger.Module
@@ -14,6 +16,10 @@ abstract class UseCaseModule {
 
     @Binds1
     @ViewModelScoped
-    abstract fun bindTotalGameUseCase(getProductUseCaseImpl: GetProductUseCaseImpl): GetProductUseCase
+    abstract fun bindProductGameUseCase(getProductUseCaseImpl: GetProductUseCaseImpl): GetProductUseCase
+
+    @Binds1
+    @ViewModelScoped
+    abstract fun bindDetailProductUseCase(getDetailProductUseCaseImpl: GetDetailProductUseCaseImpl):GetDetailProductUseCase
 
 }
