@@ -22,7 +22,7 @@ class DetailViewModel @Inject constructor(
     )
     val detailUiData = _detailUiData.asStateFlow()
 
-     fun getDetailProduct(productId: Int) {
+    fun getDetailProduct(productId: Int) {
         viewModelScope.launch {
             getDetailProductUseCase.invoke(productId).collect { productDetail ->
                 when (productDetail) {
@@ -39,5 +39,34 @@ class DetailViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun getminus(getNumber: CharSequence): String {
+        val updateNumberType = getNumber.toString().toInt()
+        val lastNumber = updateNumberType - 1
+        return lastNumber.toString()
+    }
+
+    fun plus(number: CharSequence?): String {
+        val updateNumberType = number.toString().toInt()
+        val lastNumber = updateNumberType + 1
+        return lastNumber.toString()
+    }
+
+    fun getRealPrice(getNumber: CharSequence, getPrice: CharSequence,isPlus: Boolean): String {
+        val updateNumberType = getNumber.toString().toInt()
+        var updatePriceType = getPrice.toString().toDouble()
+        updatePriceType *= if(isPlus){
+            val lastNumber = updateNumberType + 1
+            if (lastNumber != 0) {
+                lastNumber
+            } else {1}
+        }else{
+            val lastNumber = updateNumberType - 1
+            if (lastNumber != 0) {
+                lastNumber
+            } else {1}
+        }
+        return updatePriceType.toString()
     }
 }
