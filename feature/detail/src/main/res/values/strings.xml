@@ -6,4 +6,5 @@
     <string name="minus">-</string>
     <string name="example_number">199,00</string>
     <string name="plus">+</string>
+    <string name="dollar">$</string>
 </resources>

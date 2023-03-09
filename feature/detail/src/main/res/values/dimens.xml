@@ -7,4 +7,7 @@
     <dimen name="stock_text">15sp</dimen>
     <dimen name="line">10dp</dimen>
     <dimen name="title_text">15dp</dimen>
+    <dimen name="price_tex_size">20sp</dimen>
+    <dimen name="image_top">10dp</dimen>
+    <dimen name="button_size">40dp</dimen>
 </resources>
