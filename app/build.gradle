@@ -51,6 +51,8 @@ dependencies {
     implementation project(path: ':core:common')
     implementation project(path: ':feature:home')
     implementation project(path: ':feature:detail')
+    implementation project(path: ':feature:favorite')
+    implementation project(path: ':feature:basket')
     implementation project(path: ':navigation')
 
 

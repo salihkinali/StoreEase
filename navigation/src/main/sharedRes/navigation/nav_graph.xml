@@ -23,5 +23,17 @@
             android:name="productId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.salihkinali.feature.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.salihkinali.feature.basket.BasketFragment"
+        android:label="BasketFragment"
+        tools:layout="@layout/fragment_basket"/>
+
 
 </navigation>

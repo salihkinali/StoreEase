@@ -43,7 +43,10 @@ class DetailViewModel @Inject constructor(
 
     fun getminus(getNumber: CharSequence): String {
         val updateNumberType = getNumber.toString().toInt()
-        val lastNumber = updateNumberType - 1
+        var lastNumber = 0
+        if (updateNumberType != 0){
+            lastNumber = updateNumberType - 1
+        }
         return lastNumber.toString()
     }
 
@@ -53,19 +56,23 @@ class DetailViewModel @Inject constructor(
         return lastNumber.toString()
     }
 
-    fun getRealPrice(getNumber: CharSequence, getPrice: CharSequence,isPlus: Boolean): String {
+    fun getRealPrice(getNumber: CharSequence, getPrice: CharSequence, isPlus: Boolean): String {
         val updateNumberType = getNumber.toString().toInt()
         var updatePriceType = getPrice.toString().toDouble()
-        updatePriceType *= if(isPlus){
+        updatePriceType *= if (isPlus) {
             val lastNumber = updateNumberType + 1
             if (lastNumber != 0) {
                 lastNumber
-            } else {1}
-        }else{
+            } else {
+                1
+            }
+        } else {
             val lastNumber = updateNumberType - 1
             if (lastNumber != 0) {
                 lastNumber
-            } else {1}
+            } else {
+                1
+            }
         }
         return updatePriceType.toString()
     }

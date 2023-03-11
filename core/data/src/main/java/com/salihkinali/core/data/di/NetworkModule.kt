@@ -5,8 +5,7 @@ import com.salihkinali.core.data.api.StoreEaseApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,11 +13,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides
-    @ViewModelScoped
     fun getInterceptor(): Interceptor {
         return HttpLoggingInterceptor().apply {
             setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -26,7 +24,6 @@ object NetworkModule {
     }
 
     @Provides
-    @ViewModelScoped
     fun getHttpClient(interceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -34,7 +31,6 @@ object NetworkModule {
     }
 
     @Provides
-    @ViewModelScoped
     fun provideGameApi(client: OkHttpClient): StoreEaseApi {
         return Retrofit.Builder()
             .baseUrl("https://fakestoreapi.com/")

@@ -32,6 +32,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     }
 
     private fun setClickListeners() {
+
         binding.apply {
             minusButton.setOnClickListener {
                 val getNumber = productPieceText.text
