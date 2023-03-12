@@ -30,4 +30,6 @@ ext {
 
     material_design = "1.8.0"
 
+    room_version = "2.5.0"
+
 }
