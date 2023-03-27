@@ -59,6 +59,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun navigateToFragment(id: Int) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
         findNavController().navigate(action)
-
     }
 }

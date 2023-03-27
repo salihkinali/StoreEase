@@ -1,5 +1,7 @@
 package com.salihkinali.core.data.di
 
+import com.salihkinali.core.data.source.LocalDataSource
+import com.salihkinali.core.data.source.LocalDataSourceImpl
 import com.salihkinali.core.data.source.RemoteDataSource
 import com.salihkinali.core.data.source.RemoteDataSourceImpl
 import dagger.Binds
@@ -15,4 +17,8 @@ abstract class DataSourceModule {
     @Binds
     @ViewModelScoped
     abstract fun bindRemoteDataSource(remoteDataSourceImpl: RemoteDataSourceImpl): RemoteDataSource
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindLocalDataSource(localDataSourceImpl: LocalDataSourceImpl): LocalDataSource
 }

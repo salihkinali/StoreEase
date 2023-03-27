@@ -1,10 +1,10 @@
-package com.salihkinali.core.data.dto.favorite
+package com.salihkinali.core.domain.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "favorite_table")
-data class FavoriteData(
+data class FavoriteProduct(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val title: String,

@@ -28,32 +28,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
         super.onViewCreated(view, savedInstanceState)
         viewModel.getDetailProduct(navArgs.productId)
         showDetailData()
-        setClickListeners()
     }
-
-    private fun setClickListeners() {
-
-        binding.apply {
-            minusButton.setOnClickListener {
-                val getNumber = productPieceText.text
-                val getPrice = productPriceText.text
-                val result = viewModel.getminus(getNumber)
-                val lastPrice = viewModel.getRealPrice(getNumber,getPrice,false)
-                productPieceText.text = result
-                productPriceText.text = lastPrice
-            }
-
-            plusButton.setOnClickListener {
-                val getNumber = productPieceText.text
-                val getPrice = productPriceText.text
-                val result = viewModel.plus(getNumber)
-                val lastPrice = viewModel.getRealPrice(getNumber,getPrice,true)
-                productPieceText.text = result
-                productPriceText.text = lastPrice
-            }
-        }
-    }
-
 
     private fun showDetailData() {
         binding.apply {
@@ -80,8 +55,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             productDescriptionText.text = result.description
             ratingBar.rating = result.rate.toFloat()
             stockCount.text = "Stock Count: ${result.count}"
-            productPieceText.text = "1"
             productPriceText.text = result.price.toString()
         }
     }
+
 }
