@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.salihkinali.core.common.NetworkResponse
 import com.salihkinali.core.design.base.BaseFragment
@@ -23,11 +24,23 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
 
     private val viewModel by viewModels<DetailViewModel>()
     private val navArgs by navArgs<DetailFragmentArgs>()
+    private var data: ProductDetailEntity? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getDetailProduct(navArgs.productId)
         showDetailData()
+        addToBasket()
+    }
+
+    private fun addToBasket() {
+        binding.addBasketButton.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.addToBasket(data)
+                val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun showDetailData() {
@@ -48,6 +61,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
 
     @SuppressLint("SetTextI18n")
     private fun showUiData(result: ProductDetailEntity) {
+        data = result
         binding.apply {
             progressBar.hide()
             productImageView.downloadImage(result.image)
@@ -58,5 +72,4 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             productPriceText.text = result.price.toString()
         }
     }
-
 }

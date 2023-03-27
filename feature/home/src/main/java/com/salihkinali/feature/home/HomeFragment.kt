@@ -11,7 +11,6 @@ import com.salihkinali.core.design.extension.hide
 import com.salihkinali.core.design.extension.show
 import com.salihkinali.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -32,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun observeProductData() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             viewModel.homeUidata.collect {
                 when (it) {
                     is NetworkResponse.Error -> {

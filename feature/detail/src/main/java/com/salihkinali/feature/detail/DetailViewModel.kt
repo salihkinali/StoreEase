@@ -1,10 +1,12 @@
 package com.salihkinali.feature.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.salihkinali.common.mapper.StoreMapper
 import com.salihkinali.core.common.NetworkResponse
+import com.salihkinali.core.domain.entity.FavoriteProduct
 import com.salihkinali.core.domain.entity.ProductDetailEntity
+import com.salihkinali.core.domain.repository.StoreRepository
 import com.salihkinali.core.domain.usecase.GetDetailProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +16,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val getDetailProductUseCase: GetDetailProductUseCase
+    private val getDetailProductUseCase: GetDetailProductUseCase,
+    private val detailProductMapper : StoreMapper<ProductDetailEntity,FavoriteProduct>,
+    private val repository: StoreRepository
 ) : ViewModel() {
 
     private val _detailUiData = MutableStateFlow<NetworkResponse<ProductDetailEntity>>(
@@ -33,7 +37,6 @@ class DetailViewModel @Inject constructor(
                         _detailUiData.emit(NetworkResponse.Loading)
                     }
                     is NetworkResponse.Success -> {
-                        Log.i("GELEN DATA BURDA ->", productDetail.result.description)
                         _detailUiData.emit(NetworkResponse.Success(productDetail.result))
                     }
                 }
@@ -41,39 +44,11 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun getminus(getNumber: CharSequence): String {
-        val updateNumberType = getNumber.toString().toInt()
-        var lastNumber = 0
-        if (updateNumberType != 0){
-            lastNumber = updateNumberType - 1
-        }
-        return lastNumber.toString()
+   suspend fun addToBasket(data: ProductDetailEntity?) {
+       data?.let {
+        repository.addFavoriteProduct(mappingData(it))
+       }
     }
 
-    fun plus(number: CharSequence?): String {
-        val updateNumberType = number.toString().toInt()
-        val lastNumber = updateNumberType + 1
-        return lastNumber.toString()
-    }
-
-    fun getRealPrice(getNumber: CharSequence, getPrice: CharSequence, isPlus: Boolean): String {
-        val updateNumberType = getNumber.toString().toInt()
-        var updatePriceType = getPrice.toString().toDouble()
-        updatePriceType *= if (isPlus) {
-            val lastNumber = updateNumberType + 1
-            if (lastNumber != 0) {
-                lastNumber
-            } else {
-                1
-            }
-        } else {
-            val lastNumber = updateNumberType - 1
-            if (lastNumber != 0) {
-                lastNumber
-            } else {
-                1
-            }
-        }
-        return updatePriceType.toString()
-    }
+    private fun mappingData(it: ProductDetailEntity): FavoriteProduct = detailProductMapper.map(it)
 }

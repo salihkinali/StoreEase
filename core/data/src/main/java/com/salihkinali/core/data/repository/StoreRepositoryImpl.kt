@@ -7,7 +7,9 @@ import com.salihkinali.common.mapper.StoreMapper
 import com.salihkinali.core.common.NetworkResponse
 import com.salihkinali.core.data.dto.detail.ResponseDetail
 import com.salihkinali.core.data.dto.home.StoreProductItem
+import com.salihkinali.core.data.source.LocalDataSource
 import com.salihkinali.core.data.source.RemoteDataSource
+import com.salihkinali.core.domain.entity.FavoriteProduct
 import com.salihkinali.core.domain.entity.ProductDetailEntity
 import com.salihkinali.core.domain.entity.ProductEntity
 import com.salihkinali.core.domain.repository.StoreRepository
@@ -16,10 +18,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class StoreRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
     private val productMapper: StoreListMapper<StoreProductItem, ProductEntity>,
     private val detailMapper: StoreMapper<ResponseDetail, ProductDetailEntity>,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -45,7 +49,7 @@ class StoreRepositoryImpl @Inject constructor(
         flow {
             emit(NetworkResponse.Loading)
             when (val response = remoteDataSource.getProductDetail(productId)) {
-                is NetworkResponse.Error ->{
+                is NetworkResponse.Error -> {
                     emit(NetworkResponse.Error(response.exception))
                 }
 
@@ -56,4 +60,9 @@ class StoreRepositoryImpl @Inject constructor(
                 }
             }
         }.flowOn(ioDispatcher)
+
+    override suspend fun addFavoriteProduct(favoriteProduct: FavoriteProduct) =
+        withContext(ioDispatcher) {
+            localDataSource.addFavoriteProduct(favoriteProduct)
+        }
 }
