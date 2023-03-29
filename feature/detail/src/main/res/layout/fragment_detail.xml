@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.salihkinali.feature.detail.DetailFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -86,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-
+                android:textStyle="bold"
                 android:textSize="@dimen/price_tex_size"
                 tools:text="@string/example_number" />
             <androidx.appcompat.widget.AppCompatTextView
@@ -95,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginEnd="10dp"
+                android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:textSize="@dimen/price_tex_size"
                 android:text="@string/dollar" />
@@ -123,6 +125,8 @@
         android:background="@color/basket_button"
         android:gravity="center"
         android:padding="@dimen/button_padding"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         android:text="@string/add_to_basket"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
