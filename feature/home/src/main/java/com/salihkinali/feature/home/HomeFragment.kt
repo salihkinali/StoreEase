@@ -21,10 +21,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         super.onViewCreated(view, savedInstanceState)
 
         observeProductData()
-        setadapter()
+        setAdapter()
     }
 
-    private fun setadapter() {
+    private fun setAdapter() {
         binding.productRv.adapter = adapter
     }
 

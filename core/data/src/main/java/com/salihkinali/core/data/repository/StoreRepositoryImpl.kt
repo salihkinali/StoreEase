@@ -65,4 +65,15 @@ class StoreRepositoryImpl @Inject constructor(
         withContext(ioDispatcher) {
             localDataSource.addFavoriteProduct(favoriteProduct)
         }
+
+    override fun getAllFavoriteProducts(): Flow<NetworkResponse<List<FavoriteProduct>>> =
+        flow {
+            emit(NetworkResponse.Loading)
+            when (val response = localDataSource.getAllFavoriteProducts()) {
+
+                is NetworkResponse.Error -> emit(NetworkResponse.Error(response.exception))
+                NetworkResponse.Loading -> emit(NetworkResponse.Loading)
+                is NetworkResponse.Success -> emit(response)
+            }
+        }.flowOn(ioDispatcher)
 }

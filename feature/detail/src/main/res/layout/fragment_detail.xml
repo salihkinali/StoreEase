@@ -13,8 +13,7 @@
         app:layout_constraintBottom_toTopOf="@+id/addBasketButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/cardview_dark_background">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ScrollView

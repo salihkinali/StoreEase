@@ -11,4 +11,6 @@ interface StoreRepository {
     fun getDetailProduct(productId: Int): Flow<NetworkResponse<ProductDetailEntity>>
 
     suspend fun addFavoriteProduct(favoriteProduct: FavoriteProduct)
+
+    fun getAllFavoriteProducts() : Flow<NetworkResponse<List<FavoriteProduct>>>
 }

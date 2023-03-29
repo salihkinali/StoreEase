@@ -9,5 +9,6 @@ data class FavoriteProduct(
     val id: Int = 0,
     val title: String,
     val image: String,
-    val rating: Double
+    val rating: Double,
+    val price: Double
 )

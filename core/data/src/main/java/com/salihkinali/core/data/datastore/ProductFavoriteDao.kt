@@ -15,5 +15,8 @@ interface ProductFavoriteDao {
     @Query("DELETE FROM favorite_table")
     suspend fun deleteAllProductFromFavorite()
 
+    @Query("SELECT * FROM favorite_table ORDER BY id ASC")
+    suspend fun getAllFavoriteProducts():List<FavoriteProduct>
+
 
 }

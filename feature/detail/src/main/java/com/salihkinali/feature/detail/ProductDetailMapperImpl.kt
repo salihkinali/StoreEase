@@ -10,7 +10,8 @@ class ProductDetailMapperImpl @Inject constructor(): StoreMapper<ProductDetailEn
         return FavoriteProduct(
             title = input.title,
             image = input.image,
-            rating = input.rate
+            rating = input.rate,
+            price = input.price
         )
     }
 }
